@@ -28,6 +28,9 @@ class TestControllerTest {
     private final WebApplicationContext context;
     private final MemberRepository memberRepository;
 
+    /**
+     * mockMvc는 테스트 메서드 독립성을 보장하기 위해 @BeforeAll이 아닌 @BeforeEach 를 사용한다.
+     */
     @BeforeEach
     public void mockMvcSetUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(context)
@@ -48,7 +51,7 @@ class TestControllerTest {
         Member savedMember = memberRepository.save(new Member(1L, "박찬웅"));
 
         // when
-        // 멤버 리스트 조회 API 호출
+        // 멤버 리스트 조회 Get API 호출
         final ResultActions result = mockMvc.perform(get(url)
                 .accept(MediaType.APPLICATION_JSON));
 
