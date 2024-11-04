@@ -20,7 +20,7 @@ spring:
       client:
         registration:
           google:
-            client-id: test
+            client-id: test2
             client-secret:
             scope:
               - email

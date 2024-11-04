@@ -42,4 +42,4 @@ bin/
 .DS_Store
 
 # application.yml 설정
-.application.yml
+/src/main/resources/application.yml
