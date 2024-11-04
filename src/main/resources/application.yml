@@ -14,6 +14,17 @@ spring:
     console:
       enabled: true
 
+#  OAuth 설정
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id:
+            client-secret:
+            scope:
+              - email
+              - profile
 jwt:
   issuer: cksdnd@gmail.com
   secret_key: study-springboot
