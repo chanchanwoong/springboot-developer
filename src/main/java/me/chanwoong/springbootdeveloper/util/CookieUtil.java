@@ -4,6 +4,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.util.SerializationUtils;
+import org.springframework.web.util.WebUtils;
 
 import java.util.Base64;
 
@@ -23,18 +24,28 @@ public class CookieUtil {
     // 쿠키 이름을 입력받아 쿠키 삭제
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
         // 쿠키 배열 가져오기
-        Cookie[] cookies = request.getCookies();
-
-        if (cookies == null) return;
+//        Cookie[] cookies = request.getCookies();
+//
+//        if (cookies == null) return;
 
         // 만료 시간을 0으로 초기화하여 삭제
-        for (Cookie cookie : cookies) {
-            if (name.equals(cookie.getName())) {
-                cookie.setValue("");
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-            }
+//        for (Cookie cookie : cookies) {
+//            if (name.equals(cookie.getName())) {
+//                cookie.setValue("");
+//                cookie.setPath("/");
+//                cookie.setMaxAge(0);
+//                response.addCookie(cookie);
+//            }
+//        }
+
+        // WebUtils을 이용하여 보다 가독성있게 쿠키 삭제
+        Cookie cookie = WebUtils.getCookie(request, name);
+
+        if (cookie != null) {
+            cookie.setValue("");
+            cookie.setPath("/");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
         }
     }
 
