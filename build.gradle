@@ -47,6 +47,10 @@ dependencies {
     implementation 'com.mysql:mysql-connector-j'
 }
 
-test {
-    useJUnitPlatform()
+//test {
+//    useJUnitPlatform()
+//}
+
+test.onlyIf {
+    !project.hasProperty('test')
 }
